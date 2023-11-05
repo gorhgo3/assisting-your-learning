@@ -15,4 +15,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  globals: {
+    process: true, // Allow the use of the process global object
+  },
 }
