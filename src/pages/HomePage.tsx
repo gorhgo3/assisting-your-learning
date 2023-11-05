@@ -1,4 +1,17 @@
+import axios from 'axios'
+
 function HomePage() {
+
+  async function fetchData() {
+    try {
+      const response = await axios.get('http://localhost:3000/learning/');
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+    
+  fetchData()
   return (
     <>
       <h4>HomePage</h4>
