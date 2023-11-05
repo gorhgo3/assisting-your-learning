@@ -1,5 +1,3 @@
-import React from 'react'
-
 function HomePage() {
   return (
     <>
@@ -21,6 +19,12 @@ function HomePage() {
           Industries latest standards.
         </span>
       </h1>
+
+      <form onSubmit={(e) => e.preventDefault()}>
+        <label htmlFor="YoutubeURL">Youtube URL</label>
+        <input name="YoutubeURL" type="text" placeholder="Enter Youtube URL" />
+        <button>Submit</button>
+      </form>
     </>
   )
 }
