@@ -5,8 +5,8 @@ import { config } from 'dotenv'
 config()
 
 
-export async function checkVideo () {
-  const ENDPOINT = 'https://www.youtube.com/watch?v=upDLs1sn7g4&ab_channel=ProgrammingwithMosh'
+export async function checkVideo (url) {
+  const ENDPOINT = url
   try {
     // fetch transcript
     const data = YoutubeTranscript.fetchTranscript(ENDPOINT).then((data) => {
