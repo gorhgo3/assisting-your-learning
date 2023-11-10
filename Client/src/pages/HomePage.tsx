@@ -1,4 +1,19 @@
+import axios from 'axios'
+import React, { useState } from 'react'
+import YoutubeForm from '../components/YoutubeForm';
+
 function HomePage() {
+  const [YoutubeInfo, setYoutubeInfo] = useState('')
+
+  async function fetchData(event: React.FormEvent<HTMLFormElement>) {
+    try {
+      const response = await axios.get('http://localhost:3000/learning/');
+      console.log(response.data);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+    
   return (
     <>
       <h4>HomePage</h4>
@@ -19,12 +34,14 @@ function HomePage() {
           Industries latest standards.
         </span>
       </h1>
+      <YoutubeForm/>
 
-      <form onSubmit={(e) => e.preventDefault()}>
+      {/* <form onSubmit={fetchData}>
         <label htmlFor="YoutubeURL">Youtube URL</label>
         <input name="YoutubeURL" type="text" placeholder="Enter Youtube URL" />
         <button>Submit</button>
-      </form>
+      </form> */}
+      <p className="info">{YoutubeInfo}</p>
     </>
   )
 }
