@@ -1,24 +1,25 @@
 import React, { useState } from 'react'
+import { getYoutubeTranscript } from '../api'
 
-export function YoutubeForm() {
+interface Props {
+  handleSubmit: (url: string) => void,
+}
+
+export function YoutubeForm(props:Props) {
   const [YTURL, setYTURL] = useState('')
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setYTURL(event.target.value)
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    props.handleSubmit(YTURL)
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    console.log('submit')
-    // send client submit to server endpoints
-  }
+
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h4>Enter Youtube URL you want to watch</h4>
+    <form onSubmit={handleFormSubmit}>
       <label htmlFor="YoutubeURL">YoutubeURL</label>
       <input
-        onChange={handleChange}
+        onChange={(e) => setYTURL(e?.target.value)}
         name="YoutubeURL"
         type="text"
         placeholder="Enter Youtube URL"
