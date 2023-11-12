@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import './App.css'
-import Header from './components/Header'
+import '../styles/App.css'
+import Header from './Header'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,9 +8,8 @@ function App() {
   return (
     <>
       <div>
-        <Header/>
-        <a href="https://vitejs.dev" target="_blank">
-        </a>
+        <Header />
+        <a href="https://vitejs.dev" target="_blank"></a>
         <a href="https://react.dev" target="_blank">
           <h1>Hello world</h1>
         </a>
