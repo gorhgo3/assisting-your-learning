@@ -15,3 +15,7 @@ export async function getStudySessionPlan () {
 export async function addToStudyHistory () {
   console.log('adding to study history');
 }
+
+export async function questionResponse () {
+  console.log('questioning the response');
+}
