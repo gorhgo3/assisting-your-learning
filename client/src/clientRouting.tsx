@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
-import App from './App'
+import App from './components/App'
 import HomePage from './pages/HomePage'
 
 const router = createBrowserRouter(

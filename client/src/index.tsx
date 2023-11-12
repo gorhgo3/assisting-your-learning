@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 // import App from './App.tsx'
 import './index.css'
 // import HomePage from './pages/HomePage.tsx'
-import './App.css'
+// import './App.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './clientRouting.tsx'
 
