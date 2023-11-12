@@ -17,6 +17,7 @@ function HomePage() {
 
   return (
     <>
+    <div className="content">
         <h1>Welcome to StudyBuddy</h1>
         <p>Let AI assist in the process of learning. Get the most from your invested study hours.</p>
         <p>Save time by filtering YouTube videos relevant to today's ever-changing tech industry.</p>
@@ -24,6 +25,7 @@ function HomePage() {
         <Link to="/login/app">Login</Link>
         <YoutubeForm />
       <p className="info">{YoutubeInfo}</p>
+      </div>
     </>
   )
 }
