@@ -1,6 +1,6 @@
 import YoutubeForm from './YoutubeForm'
 import { useState } from 'react'
-import { getYoutubeTranscript, getStudySessionPlan } from '../api'
+import { getYoutubeTranscript, getStudySessionPlan, addToStudyHistory } from '../api'
 
 function YoutubeOverview() {
   const [analyseData, setAnalyseData] = useState<string | null>(null)
@@ -27,7 +27,7 @@ function YoutubeOverview() {
           <button onClick={getStudySessionPlan}>
             Generate a 3 hour study session
           </button>
-          <button>Store this as a completed topic</button>
+          <button onClick={addToStudyHistory}>Store this as a completed topic</button>
           <button>Question this response</button>
         </div>
       )}

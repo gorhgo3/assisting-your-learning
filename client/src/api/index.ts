@@ -11,3 +11,7 @@ export async function getStudySessionPlan () {
   console.log('activating the study session');
   
 }
+
+export async function addToStudyHistory () {
+  console.log('adding to study history');
+}
