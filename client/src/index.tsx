@@ -6,9 +6,12 @@ import './styles/index.css'
 // import './App.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './routing.tsx'
+import Header from './components/Header.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <Header />
     <RouterProvider router={router} />
-  </React.StrictMode>,
+    {/* footer */}
+  </React.StrictMode>
 )
