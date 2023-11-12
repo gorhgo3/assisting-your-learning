@@ -1,5 +1,6 @@
 import express from "express"
-import { checkVideo } from "../functions/index.js"
+import { checkVideo } from "../functions/youtubeTranscript.js"
+import runAI from "../functions/aiYoutube.js";
 
 const router = express.Router()
 
@@ -11,13 +12,19 @@ const router = express.Router()
 // })
 router.post(`/`, async (req, res) => {
   try {
-    const jsonData = req.body; // Access the JSON data from the request body
-    console.log(jsonData);
-    console.log('jsonData');
+    const jsonData = req.body.url
+    // console.log(jsonData)
     // Process the JSON data as needed
+    const data = await checkVideo(jsonData)
+    // console.log(data);
+    
+    const summary = await runAI(data)
+
+    console.log(summary);
+    
 
     // Send a response back if required
-    res.status(200).json({ message: 'Data received successfully' });
+    // res.status(200).json(summary);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred' });
