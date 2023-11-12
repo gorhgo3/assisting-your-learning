@@ -1,6 +1,4 @@
-import { YoutubeTranscript } from 'youtube-transcript'
 import OpenAI from 'openai'
-import { config } from 'dotenv'
 
 async function runAI(data:any) {
   const message = `

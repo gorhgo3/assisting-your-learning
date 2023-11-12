@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import YoutubeForm from '../components/YoutubeForm'
 import { Link } from 'react-router-dom'
+import YoutubeOverview from '../components/YoutubeOverview'
 
 function HomePage() {
   const [YoutubeInfo, setYoutubeInfo] = useState('')
@@ -23,7 +24,7 @@ function HomePage() {
         <p>Save time by filtering YouTube videos relevant to today's ever-changing tech industry.</p>
         <p>Get started with our new tool. Only watch YouTube tutorials that keep up with the latest tech standards.</p>
         <Link to="/login/app">Login</Link>
-        <YoutubeForm />
+        <YoutubeOverview/>
       <p className="info">{YoutubeInfo}</p>
       </div>
     </>
