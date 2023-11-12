@@ -1,4 +1,7 @@
+import { config } from 'dotenv'
 import OpenAI from 'openai'
+
+config()
 
 async function runAI(data:any) {
   const message = `
