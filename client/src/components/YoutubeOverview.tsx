@@ -6,24 +6,32 @@ import {
   addToStudyHistory,
   questionResponse,
 } from '../api'
+import { useQuery } from '@tanstack/react-query'
 
 function YoutubeOverview() {
-  const [analyseData, setAnalyseData] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [url, setUrl] = useState<string>('')
+  const {
+    data: analyseData,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ['youtubeTranscript'],
+    queryFn: () => getYoutubeTranscript(url),
+    // refetch: {enabled: false}
+  })
 
-  // generate youtube transcript of the youtube video and set analyseData to result
   async function getAnalysis(url: string) {
-    setLoading(true)
-    const data = await getYoutubeTranscript(url)
-    setAnalyseData(data)
-    setLoading(false)
+    setUrl(url)
+    refetch()
   }
 
   return (
     <div className="youtube-overview">
       <h4>Enter Youtube URL you want to watch</h4>
       <YoutubeForm handleSubmit={getAnalysis} />
-      {loading && <h4>Loading...</h4>}
+      {isLoading && <h4>Loading...</h4>}
+      {isError && <h4>Error</h4>}
       {analyseData && (
         // handle the youtube responses here:
         <div className="">
