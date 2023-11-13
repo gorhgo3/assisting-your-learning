@@ -5,7 +5,7 @@ import { TranscriptResponse } from 'youtube-transcript'
 
 const router = express.Router()
 
-router.post(`/`, async (req, res) => {
+router.post(`/transcript`, async (req, res) => {
   try {
     const jsonData = req.body.url
     const data: TranscriptResponse[] | undefined = await checkVideo(jsonData)
