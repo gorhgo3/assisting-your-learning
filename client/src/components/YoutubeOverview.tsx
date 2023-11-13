@@ -18,7 +18,7 @@ function YoutubeOverview() {
   } = useQuery({
     queryKey: ['youtubeTranscript'],
     queryFn: () => getYoutubeTranscript(url),
-    // refetch: {enabled: false}
+    enabled: false
   })
 
   async function getAnalysis(url: string) {
