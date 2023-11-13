@@ -5,11 +5,16 @@ import { RouterProvider } from 'react-router-dom'
 import router from './routing.tsx'
 import Header from './components/Header.tsx'
 import Footer from './components/Footer.tsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Header />
-    <RouterProvider router={router} />
-    <Footer />
+    <QueryClientProvider client={queryClient}>
+      <Header />
+      <RouterProvider router={router} />
+      <Footer />
+    </QueryClientProvider>
   </React.StrictMode>
 )
