@@ -22,9 +22,10 @@ export async function reviewTranscript(data: any) {
   }
 }
 
-
 // Generate a 3 hour study session
-export async function newStudySession(analysis:string) {
+export async function newStudySession(
+  analysis: string
+): Promise<OpenAI.Chat.Completions.ChatCompletion> {
   const message = `
   can you generate a series of topics that can take up to 3 hours total to get a better understanding of the content of this video- generate for me a study session of up to 3 hours from this overview:
   ${analysis}
@@ -37,12 +38,11 @@ export async function newStudySession(analysis:string) {
       messages: [{ role: 'user', content: message }],
       model: 'gpt-3.5-turbo',
     })
-    return chatCompletion.choices[0].message.content
+    return chatCompletion
   } catch (err) {
-    return err
+    throw err
   }
 }
-
 
 // Question this response
 export async function questionResponse(data: any) {
