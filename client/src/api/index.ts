@@ -1,4 +1,5 @@
 import superagent from 'superagent'
+import { aiMessage } from '../../../server/models/ai'
 
 const serverUrl = 'http://localhost:3000'
 
@@ -9,12 +10,11 @@ export async function getYoutubeTranscript(url: string) {
   return test.body
 }
 
-export async function getStudySessionPlan(analysis: string) {
-  console.log('activating the study session')
+export async function getStudySession(analysis: string): Promise<aiMessage> {
   const response = await superagent
     .post(serverUrl + '/learning/v1/openAI/study_session')
-    .send({analysis})
-  return response.body
+    .send({ analysis })
+    return response.body
 }
 
 export async function addToStudyHistory() {
