@@ -28,3 +28,12 @@ export async function questionResponse(analysis: string, question: string) {
     .send({ data: [analysis, question] })
   return response.body
 }
+
+// DATABASE CALLS
+
+export async function gatherAllData() {
+  const response = await superagent.get(serverUrl + '/learning/v1/db/resources')
+  console.log(response.body);
+  return response.body
+  
+}
