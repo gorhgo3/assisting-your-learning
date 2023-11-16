@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import openAiRoutes from './routes/learning.ts';
+import openAiRoutes from './routes/ai.ts';
+import dbRoutes from './routes/db.ts';
 // import initialTest from './functions/fireStore.js';
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 // await initialTest()
 
 app.use('/learning/v1/openAI', openAiRoutes);
+app.use('/learning/v1/db', dbRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
