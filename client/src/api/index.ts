@@ -36,9 +36,9 @@ export async function gatherAllData() {
   return response.body
 }
 
-export async function addStudy() {
+export async function addStudy(data:string) {
   const response = await superagent.post(
     serverUrl + '/learning/v1/db/resources'
-  )
+  ).send({data})
   return response.body
 }

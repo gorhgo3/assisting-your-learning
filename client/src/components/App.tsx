@@ -13,9 +13,9 @@ function App() {
         <a href="https://vitejs.dev" target="_blank"></a>
         <a href="https://react.dev" target="_blank">
           <h1>Hello world</h1>
+        <button onClick={gatherAllData}>press to print resources</button>
         </a>
       </div>
-        <button onClick={gatherAllData}>press to print resources</button>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
