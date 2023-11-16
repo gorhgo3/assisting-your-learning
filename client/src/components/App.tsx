@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import '../styles/App.css'
 import Header from './Header'
+import { gatherAllData } from '../api'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
           <h1>Hello world</h1>
         </a>
       </div>
+        <button onClick={gatherAllData}>press to print resources</button>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
