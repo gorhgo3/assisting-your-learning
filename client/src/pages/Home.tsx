@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import YoutubeForm from '../components/YoutubeForm'
 import { Link } from 'react-router-dom'
 import YoutubeOverview from '../components/YoutubeOverview'
+import Header from '../components/Header'
 
 function HomePage() {
   const [YoutubeInfo, setYoutubeInfo] = useState('')
@@ -18,6 +19,7 @@ function HomePage() {
 
   return (
     <>
+    <Header/>
     <div className="content">
         <h1>Welcome to StudyBuddy</h1>
         <p>Let AI assist in the process of learning. Get the most from your invested study hours.</p>
