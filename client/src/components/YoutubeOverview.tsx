@@ -8,16 +8,8 @@ import {
 } from '../api'
 import { useQuery } from '@tanstack/react-query'
 
-// const tempData = `
-// - Interactive Learning: Many learning platforms and resources provide interactive coding exercises and challenges to engage learners actively.
-// - Hands-on Projects: Learning by building projects is a popular approach as it allows learners to apply their knowledge in practical scenarios.
-// - Online Tutorials and Courses: Online learning platforms offer a wide range of coding tutorials and courses that cover various programming languages and concepts.
-// - Collaboration and Community: Learners are encouraged to join coding communities, participate in forums, and collaborate with other learners to enhance their coding skills.
-// - Continuous Practice: Consistent practice is key to mastering coding. Learners are advised to practice regularly to reinforce their knowledge and improve coding proficiency.
-// - Documentation and Stack Overflow: Modern coding practices involve utilizing documentation and online resources like Stack Overflow to troubleshoot issues, find solutions, and seek help from the developer community.
-
-// Please provide the transcript, and I'll be happy to assist you further.
-// `
+const tempData = `
+Summary: The transcript provides nine key lessons for people who are starting to learn programming. It emphasizes that there is more to life than working at big tech companies, and that smaller companies and startups can offer more engaging and fulfilling work. It emphasizes the importance of mastering the fundamentals of programming, as they will remain consistent, even as frameworks and tools change. Real-world experience is highlighted as the best teacher, and networking is emphasized as a way to open doors and gain insights. The transcript also addresses imposter syndrome and the importance of recognizing it as a common struggle. Collaboration and teamwork skills are seen as crucial in the professional world, and the transcript advises starting as a generalist before specializing in a specific area. It concludes by encouraging lifelong learning and the importance of project-based learning to reinforce knowledge and gain practical insights. Key Points: 1. There is more to life than working at big tech companies. 2. Master the fundamentals of programming. 3. Real-world experience is the best teacher. 4. Network and build genuine relationships. 5. Recognize and acknowledge imposter syndrome. 6. Collaboration and teamwork skills are crucial. 7. Start as a generalist before specializing. 8. Embrace lifelong learning and adaptability. 9. Project-based learning reinforces knowledge and provides practical insights. Modern Learning to Code Practises: The key points and lessons provided in the transcript are relevant and up-to-date with modern learning to code practices. The emphasis on mastering the fundamentals, gaining real-world experience through projects, and developing collaboration and teamwork skills align with current best practices. The advice to start as a generalist before specializing, acknowledging imposter syndrome, and embracing lifelong learning are also in line with modern approaches to learning programming.`
 
 const DEFAULT_URL =
   'https://www.youtube.com/watch?v=QIyc6NKS5J0&ab_channel=ThePrimeagen'
@@ -27,7 +19,7 @@ const DEFAULT_RESULT =
 
 function YoutubeOverview() {
   const [url, setUrl] = useState<string>(DEFAULT_URL)
-  const [transcript, setTranscript] = useState<string>('')
+  const [transcript, setTranscript] = useState<string>(tempData)
   const [studySession, setStudySession] = useState<string[]>([])
 
   // const { data, isLoading, isError, refetch } = useQuery({
@@ -48,7 +40,7 @@ function YoutubeOverview() {
     console.log('data')
     try {
       await getStudySession(transcript).then((data) => {
-        const points = data.answer.split('-')
+        const points = data.answer.split('\n')
         setStudySession(points)
         return points
       })
@@ -78,9 +70,14 @@ function YoutubeOverview() {
           <button onClick={() => questionResponse}>
             Question this response
           </button>
+          {studySession.map((plan) => (
+            <>
+              <p>{plan}</p>
+              <button>add to study</button>
+            </>
+          ))}
         </div>
       )}
-      {studySession}
     </div>
   )
 }
