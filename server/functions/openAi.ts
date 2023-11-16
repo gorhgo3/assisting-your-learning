@@ -27,9 +27,10 @@ export async function newStudySession(
   analysis: string
 ): Promise<OpenAI.Chat.Completions.ChatCompletion> {
   const message = `
-  can you generate a series of topics that can take up to 3 hours total to get a better understanding of the content of this video- generate for me a study session of up to 3 hours from this overview:
+  can you generate some technical aspects from this transcript that I could  study for 3 hours. List them as HTML list items only:
   ${analysis}
   `
+  // can you generate a series of topics that can take up to 3 hours total to get a better understanding of the content of this video- generate for me a study session of up to 3 hours from this overview:
   try {
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
