@@ -1,5 +1,5 @@
 import express from 'express'
-import { checkVideo } from '../functions/youtubeTranscript.js'
+import { checkVideo } from '../functions/transcript.js'
 import reviewTranscript, {
   newStudySession,
   questionResponse,
