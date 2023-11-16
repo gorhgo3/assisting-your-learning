@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, query, where, QuerySnapshot } from 'firebase/firestore/lite';
 import {db} from '../db/firestore.js';
 // Initialize Firebase (assuming you've already done this)
 
@@ -17,4 +17,8 @@ export async function initialTest() {
   });
 }
 
-export default initialTest
+
+export function getAllDocs(): Promise<QuerySnapshot> {
+  const q = query(collection(db, 'users'))
+  return getDocs(q)
+}
