@@ -28,6 +28,8 @@ export async function newStudySession(
 ): Promise<OpenAI.Chat.Completions.ChatCompletion> {
   const message = `
   can you generate some technical aspects from this transcript that I could  study for 3 hours. List them as HTML list items only:
+  Send me only the responses in this format 
+  *study xyz*
   ${analysis}
   `
   try {
