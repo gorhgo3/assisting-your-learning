@@ -5,6 +5,7 @@ import {
   getStudySession,
   addToStudyHistory,
   questionResponse,
+  addStudy,
 } from '../api'
 import { useQuery } from '@tanstack/react-query'
 
@@ -73,7 +74,7 @@ function YoutubeOverview() {
           {studySession.map((plan) => (
             <>
               <p>{plan}</p>
-              <button>add to study</button>
+              <button onClick={() => addStudy(plan)}>add to study</button>
             </>
           ))}
         </div>
