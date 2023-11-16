@@ -14,7 +14,7 @@ export async function getStudySession(analysis: string): Promise<aiMessage> {
   const response = await superagent
     .post(serverUrl + '/learning/v1/openAI/study_session')
     .send({ analysis })
-    return response.body
+  return response.body
 }
 
 export async function addToStudyHistory() {
@@ -29,11 +29,16 @@ export async function questionResponse(analysis: string, question: string) {
   return response.body
 }
 
-// DATABASE CALLS
+// DATABASE CALLS CRUD
 
 export async function gatherAllData() {
   const response = await superagent.get(serverUrl + '/learning/v1/db/resources')
-  console.log(response.body);
   return response.body
-  
+}
+
+export async function addStudy() {
+  const response = await superagent.post(
+    serverUrl + '/learning/v1/db/resources'
+  )
+  return response.body
 }
