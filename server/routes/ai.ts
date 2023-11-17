@@ -16,7 +16,6 @@ router.post(`/transcript`, async (req, res) => {
     const data: TranscriptResponse[] | undefined = await checkVideo(jsonData)
     const summary = data?.map((line) => line.text).join(' ')
     const response = await reviewTranscript(summary)
-    console.log(response)
     res.status(200).json(response)
   } catch (error) {
     console.error(error)

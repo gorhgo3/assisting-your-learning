@@ -12,7 +12,6 @@ export async function checkVideo(url:string) {
     const data = await YoutubeTranscript.fetchTranscript(ENDPOINT);
     return data;
   } catch (err) {
-    console.log('Transcript may be disabled for this video');
-    console.log(err);
+    console.log('Transcript may be disabled for this video', err);
   }
 }

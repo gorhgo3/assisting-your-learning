@@ -10,8 +10,8 @@ function HomePage() {
 
   async function fetchData(event: React.FormEvent<HTMLFormElement>) {
     try {
+      console.log('feching data')
       const response = await axios.get('http://localhost:3000/learning/')
-      console.log(response.data)
     } catch (error) {
       console.error(error)
     }

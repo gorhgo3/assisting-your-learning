@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import { getYoutubeTranscript } from '../api'
 
 interface Props {
-  handleSubmit: (url: string) => void,
+  handleSubmit: (url: string) => void
 }
 
-export function YoutubeForm(props:Props) {
-  const [YTURL, setYTURL] = useState('')
+export function YoutubeForm(props: Props) {
+  const [YTURL, setYTURL] = useState(
+    `https://www.youtube.com/watch?v=QIyc6NKS5J0&ab_channel=ThePrimeagen`
+  )
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    event.preventDefault()
     props.handleSubmit(YTURL)
   }
-
-
 
   return (
     <form onSubmit={handleFormSubmit}>

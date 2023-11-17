@@ -12,14 +12,11 @@ const router = express.Router()
 router.get('/resources', async (req, res) => {
   // gather all the learning resources from firestore
   const data = await getAllDocs()
-  console.log(data)
   res.status(200).json(data)
 })
 
 router.post('/resources', async (req, res) => {
   const data = req.body
-  console.log(data);
-  
   await createNewSession(data)
     .then(() => {
       res.status(200).send('successfully added to the database')
