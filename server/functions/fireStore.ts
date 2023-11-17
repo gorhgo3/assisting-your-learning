@@ -29,6 +29,6 @@ export function createNewSession(test: string):Promise<DocumentReference> {
 }
 
 
-export function loadStudySession(data: StudyPlan) {
+export function addStudySession(data: StudyPlan) {
   return addDoc(collection(db, 'users'), {data})
 }
