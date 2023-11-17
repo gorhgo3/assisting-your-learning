@@ -11,11 +11,8 @@ import Footer from './components/Footer'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/">
-        <Route path="test" element={<HomePage />} />
-        <Route path="personal/app" element={<App />} />
-        {/* <Route path="login/" element={<Header />} /> */}
-      </Route>
+      <Route path="/" element={<HomePage />} />
+      <Route path="personal/app" element={<App />} />
     </>
   )
 )
