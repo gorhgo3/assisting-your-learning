@@ -1,5 +1,6 @@
 import { getFirestore, collection, getDocs, query, where, QuerySnapshot, addDoc, DocumentReference } from 'firebase/firestore/lite';
 import {db} from '../db/firestore.js';
+import { StudyPlan } from '../models/ai.js';
 // Initialize Firebase (assuming you've already done this)
 
 
@@ -25,4 +26,9 @@ export function getAllDocs(): Promise<QuerySnapshot> {
 
 export function createNewSession(test: string):Promise<DocumentReference> {
   return addDoc(collection(db, 'users'), {topic: test})
+}
+
+
+export function loadStudySession(data: StudyPlan) {
+  return addDoc(collection(db, 'users'), {data})
 }
