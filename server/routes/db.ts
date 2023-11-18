@@ -10,7 +10,8 @@ import {
 const router = express.Router()
 
 router.get('/resources', async (req, res) => {
-  // gather all the learning resources from firestore
+  // THIS NEEDS AUTHENTICATION
+  // GATHERS ALL RESOURCES FROM THE FIRESTORE DATABASE
   const data = await getAllDocs()
   res.status(200).json(data)
 })
@@ -18,12 +19,12 @@ router.get('/resources', async (req, res) => {
 router.post('/resources', async (req, res) => {
   const { data } = req.body
   await createNewSession(data)
-  .then(() => {
-    res.status(200).send('successfully added to the database')
-  })
-  .catch((err: Error) => {
-    res.status(500).send('failed to add to the database' + err)
-  })
+    .then(() => {
+      res.status(200).send('successfully added to the database')
+    })
+    .catch((err: Error) => {
+      res.status(500).send('failed to add to the database' + err)
+    })
 })
 
 export default router
