@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router-dom'
 import App from './components/App'
-import HomePage from './pages/Home's
+import HomePage from './pages/Home'
 import Searching from './pages/Searching'
 
 const router = createBrowserRouter(
