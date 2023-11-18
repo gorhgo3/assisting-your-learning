@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom'
 function Header() {
   return (
     <div className="header">
-      <h3 style={{display:"inline"}}>StudyBuddy</h3>
-      <Link to={'/personal/app'}>Personal</Link>
-      <Link to={'/'}>Explore</Link>
-      <Link to={'/login'}>Login(notWorking)</Link>
+      <h3 style={{ display: 'inline' }}>StudyBuddy</h3>
+      <Link className="header-link" to={'/'}>
+        Home
+      </Link>
+      <Link className="header-link" to={'/searching'}>
+        Check video
+      </Link>
+      <Link className="header-link" to={'/personal/app'}>
+        placeholder
+      </Link>
     </div>
   )
 }
