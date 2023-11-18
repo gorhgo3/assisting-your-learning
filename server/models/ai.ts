@@ -10,3 +10,8 @@ export interface StudyPlan {
   user_id: number
   completed: boolean
 }
+
+export interface NewStudyData {
+  data: string
+  id: string
+}
