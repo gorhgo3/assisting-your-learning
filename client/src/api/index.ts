@@ -1,7 +1,9 @@
 import superagent from 'superagent'
-import { NewStudyData, aiMessage } from '../../../server/models/ai'
+import { NewStudyData, aiMessage } from '../../../server/models/aiModels'
+import { UserModel } from '../../../server/models/dbModels'
 
 const serverUrl = 'http://localhost:3000'
+const HASHED_USER_ID = '1111aaaabbbbb' // this needs to become dynamic
 
 export async function getYoutubeTranscript(url: string) {
   const test = await superagent
@@ -31,8 +33,13 @@ export async function questionResponse(analysis: string, question: string) {
 
 // DATABASE CALLS CRUD
 
-export async function gatherAllData() {
-  const response = await superagent.get(serverUrl + '/learning/v1/db/resources')
+export async function fetchUserDetails(
+  hashedId: string = HASHED_USER_ID
+): Promise<UserModel> {
+  console.log('query firestore')
+  const response = await superagent.get(
+    serverUrl + `/learning/v1/db/resources/${hashedId}`
+  )
   return response.body
 }
 
