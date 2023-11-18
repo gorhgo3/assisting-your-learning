@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import '../styles/App.css'
 import Header from './Header'
-import { gatherAllData } from '../api'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +12,6 @@ function App() {
         <a href="https://vitejs.dev" target="_blank"></a>
         <a href="https://react.dev" target="_blank">
           <h1>Hello world</h1>
-        <button onClick={gatherAllData}>press to print resources</button>
         </a>
       </div>
       <h1>Vite + React</h1>
