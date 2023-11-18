@@ -1,15 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { getUserDetails } from '../functions/userDetails'
+import { fetchUserDetails } from '../api'
 
 function Header() {
-
-  const {data, isLoading, isError} = useQuery({
-    queryFn: getUserDetails,
+  const { data, isLoading, isError } = useQuery({
+    queryFn: () => fetchUserDetails(),
     queryKey: ['user'],
   })
-  
+
   return (
     <div className="header">
       <h3 style={{ display: 'inline' }}>StudyBuddy</h3>
