@@ -16,14 +16,14 @@ router.get('/resources', async (req, res) => {
 })
 
 router.post('/resources', async (req, res) => {
-  const data = req.body
+  const { data } = req.body
   await createNewSession(data)
-    .then(() => {
-      res.status(200).send('successfully added to the database')
-    })
-    .catch((err: Error) => {
-      res.status(500).send('failed to add to the database' + err)
-    })
+  .then(() => {
+    res.status(200).send('successfully added to the database')
+  })
+  .catch((err: Error) => {
+    res.status(500).send('failed to add to the database' + err)
+  })
 })
 
 export default router
