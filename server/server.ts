@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import openAiRoutes from './routes/ai.ts';
-import dbRoutes from './routes/db.ts';
+import openAiRoutes from './routes/aiRoutes.ts';
+import dbRoutes from './routes/dbRoutes.ts';
 // import initialTest from './functions/fireStore.js';
 
 const app = express();
