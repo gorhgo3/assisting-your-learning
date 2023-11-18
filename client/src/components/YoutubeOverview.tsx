@@ -5,20 +5,20 @@ import {
   getStudySession,
   addToStudyHistory,
   questionResponse,
-  addStudy,
 } from '../api'
 import StudyProposals from './StudyProposals'
-
-const TEMP_USER_PROFILE = {
-  nickname: 'Gorhgo3',
-  ID: '1111aaaabbbbb',
-  studying: 'full stack web development',
-}
+import { getUserDetails } from '../functions/userDetails'
+import { useQuery } from '@tanstack/react-query'
 
 function YoutubeOverview() {
   const [url, setUrl] = useState<string>('')
   const [transcript, setTranscript] = useState<string>('')
   const [studySession, setStudySession] = useState<string[] | null>()
+
+  const { data } = useQuery({
+    queryFn: getUserDetails,
+    queryKey: ['user_id'],
+  })  
 
   async function getAnalysis(url: string) {
     setUrl(url)
