@@ -7,12 +7,18 @@ import {
   questionResponse,
   addStudy,
 } from '../api'
-import { useQuery } from '@tanstack/react-query'
+import StudyProposals from './StudyProposals'
+
+const TEMP_USER_PROFILE = {
+  nickname: 'Gorhgo3',
+  ID: '1111aaaabbbbb',
+  studying: 'full stack web development',
+}
 
 function YoutubeOverview() {
   const [url, setUrl] = useState<string>('')
   const [transcript, setTranscript] = useState<string>('')
-  const [studySession, setStudySession] = useState<string[]>([])
+  const [studySession, setStudySession] = useState<string[] | null>()
 
   async function getAnalysis(url: string) {
     setUrl(url)
@@ -35,34 +41,28 @@ function YoutubeOverview() {
 
   return (
     <div className="youtube-overview">
-      <h4>Enter Youtube URL you want to watch</h4>
       <YoutubeForm handleSubmit={getAnalysis} />
-      {/* {isLoading && <h4>Loading...</h4>} */}
-      {/* {isError && <h4>Error</h4>} */}
-      <button onClick={generateStudySession}>
-        Generate a 3 hour study session
-      </button>
       {transcript && (
-        // handle the youtube responses here:
-        <div className="">
-          {transcript}
-          <h4>Want to work with this response?</h4>
-          <button onClick={addToStudyHistory}>
-            Store this as a completed topic
-          </button>
-          <button onClick={() => questionResponse}>
-            Question this response
-          </button>
-          {studySession.map((plan) => (
-            <>
-              <p>{plan}</p>
-              <button onClick={() => addStudy(plan)}>add to study</button>
-            </>
-          ))}
-        </div>
+        // YOUTUBE SUMMARY AFTER URL SUBMIT
+        <>
+          <div className="ai-analysis-overview">
+            <h3>Here is a Summary of the Youtube Video:</h3>
+            <p>{transcript}</p>
+          </div>
+          <button onClick={generateStudySession}>Generate study session</button>
+        </>
       )}
+      {studySession && <StudyProposals study={studySession} />}
     </div>
   )
 }
 
 export default YoutubeOverview
+
+// {/* <h4>Want to work with this response?</h4>
+// <button onClick={addToStudyHistory}>
+// Store this as a completed topic
+// </button>
+// <button onClick={() => questionResponse}>
+// Question this response
+// </button> */}
