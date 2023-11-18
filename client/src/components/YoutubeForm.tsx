@@ -16,17 +16,20 @@ export function YoutubeForm(props: Props) {
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <label htmlFor="YoutubeURL">YoutubeURL</label>
-      <input
-        onChange={(e) => setYTURL(e?.target.value)}
-        name="YoutubeURL"
-        type="text"
-        placeholder="Enter Youtube URL"
-        value={YTURL}
-      />
-      <button>Submit</button>
-    </form>
+    <>
+      <h4>Enter Youtube URL you want to watch</h4>
+      <form onSubmit={handleFormSubmit}>
+        <label htmlFor="YoutubeURL">YoutubeURL</label>
+        <input
+          onChange={(e) => setYTURL(e?.target.value)}
+          name="YoutubeURL"
+          type="text"
+          placeholder="Enter Youtube URL"
+          value={YTURL}
+        />
+        <button>Submit</button>
+      </form>
+    </>
   )
 }
 
