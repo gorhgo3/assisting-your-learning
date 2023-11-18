@@ -68,3 +68,20 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.study-topic {
+  display: flex;
+  max-width: 40rem;
+  margin: 1rem auto;
+  justify-content: space-between;
+}
+
+.study-topic:hover {
+  background-color: rgba(255, 255, 255, 0.302);
+  cursor: pointer;
+}
+
+.study-topic_active {
+  background-color: rgba(255, 255, 0, 0.622);
+  color: white;
+}
