@@ -1,5 +1,5 @@
 import superagent from 'superagent'
-import { aiMessage } from '../../../server/models/ai'
+import { NewStudyData, aiMessage } from '../../../server/models/ai'
 
 const serverUrl = 'http://localhost:3000'
 
@@ -36,9 +36,9 @@ export async function gatherAllData() {
   return response.body
 }
 
-export async function addStudy(data:string) {
-  const response = await superagent.post(
-    serverUrl + '/learning/v1/db/resources'
-  ).send({data})
+export async function addStudyElement(data: NewStudyData) {
+  const response = await superagent
+    .post(serverUrl + '/learning/v1/db/resources')
+    .send({ data })
   return response.body
 }
