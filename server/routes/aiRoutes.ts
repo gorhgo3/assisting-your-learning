@@ -3,10 +3,10 @@ import { checkVideo } from '../functions/transcript.js'
 import reviewTranscript, {
   newStudySession,
   questionResponse,
-} from '../functions/openAi.js'
+} from '../functions/aiFunctions.js'
 import { TranscriptResponse } from 'youtube-transcript'
 import { OpenAI } from 'openai'
-import { aiMessage } from '../models/ai.js'
+import { aiMessage } from '../models/aiModels.js'
 
 const router = express.Router()
 

@@ -1,19 +1,19 @@
 import express from 'express'
-import { createNewSession, getAllDocs } from '../functions/fireStore'
-import {
-  DocumentChange,
-  DocumentData,
-  QuerySnapshot,
-  SnapshotMetadata,
-} from 'firebase/firestore'
+import { createNewSession, getAllDocs } from '../functions/dbFunctions'
 
 const router = express.Router()
 
-router.get('/resources', async (req, res) => {
+router.get('/resources/:id', async (req, res) => {
   // THIS NEEDS AUTHENTICATION
   // GATHERS ALL RESOURCES FROM THE FIRESTORE DATABASE
-  const data = await getAllDocs()
-  res.status(200).json(data)
+  const { id } = req.params
+  await getAllDocs(id)
+    .then((response) => {
+      res.status(200).json(response.data())
+    })
+    .catch((error) => {
+      res.status(500).send(error)
+    })
 })
 
 router.post('/resources', async (req, res) => {
