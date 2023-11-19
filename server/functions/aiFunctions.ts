@@ -1,6 +1,7 @@
 import { config } from 'dotenv'
 import OpenAI from 'openai'
 import { APIPromise } from 'openai/core.mjs'
+import { VideoSummary } from '../models/aiModels'
 
 config()
 
@@ -49,7 +50,7 @@ export async function questionResponse(data: any) {
   }
 }
 
-export async function reviewTranscript(data: any) {
+export async function reviewTranscript(data: any):Promise<VideoSummary> {
   try {
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
