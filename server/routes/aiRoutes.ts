@@ -7,35 +7,48 @@ import {
 } from '../functions/aiFunctions.js'
 import { TranscriptResponse } from 'youtube-transcript'
 import { OpenAI } from 'openai'
-import { aiMessage } from '../models/aiModels.js'
+import { VideoSummary, aiMessage } from '../models/aiModels.js'
 
 const router = express.Router()
 
 router.post(`/transcript`, async (req, res) => {
-  try {
-    const jsonData = req.body.url
-    const data: TranscriptResponse[] | undefined = await checkVideo(jsonData)
-    const summary = data?.map((line) => line.text).join(' ')
-    const response = await reviewTranscript(summary)
-    res.status(200).json(response)
-  } catch (error) {
-    console.error(error)
-    res.status(500).json({ error: 'An error occurred' })
-  }
+  const { url } = req.body
+  const data: TranscriptResponse[] | undefined = await checkVideo(url)
+  console.log('requesting transcript')
+
+  const summary = data?.map((line) => line.text).join(' ')
+  await reviewTranscript(summary)
+    .then((response: VideoSummary) => {
+      console.log(response)
+      res.status(200).json(response)
+    })
+    .catch((err) => {
+      res.status(500).json({ error: 'An error occurred' })
+    })
 })
 
 router.post('/study_session', async (req, res) => {
-  await newStudySession(req.body.analysis)
-    .then((data: OpenAI.Chat.Completions.ChatCompletion) => {
-      const studySession: aiMessage = {
-        action: 'study_session',
-        answer: data.choices[0].message.content as string,
+  try {
+    const { url } = req.body
+    // create a youtube transcript request.
+    const youtubeTranscript: TranscriptResponse[] | undefined =
+      await checkVideo(url)
+    const summary = youtubeTranscript?.map((line) => line.text).join(' ')
+    console.log(summary);
+    
+    // generate a study session from the result
+    await newStudySession(summary).then(
+      (data: OpenAI.Chat.Completions.ChatCompletion) => {
+        const studySession: aiMessage = {
+          action: 'study_session',
+          answer: data.choices[0].message.content as string,
+        }
+        res.status(200).json(studySession)
       }
-      res.status(200).json(studySession)
-    })
-    .catch((err) => {
-      res.status(500).json({ error: 'An error occured' + err })
-    })
+    )
+  } catch (err) {
+    res.status(500).json({ error: 'An error occured' + err })
+  }
 })
 
 router.get('/question', async (req, res) => {
