@@ -15,3 +15,9 @@ export interface NewStudyData {
   data: string
   id: string
 }
+
+export interface VideoSummary {
+  summary: string
+  technical: string
+  relevancy: string
+}
