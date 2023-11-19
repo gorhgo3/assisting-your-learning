@@ -1,21 +1,21 @@
 import superagent from 'superagent'
-import { NewStudyData, aiMessage } from '../../../server/models/aiModels'
+import { NewStudyData, VideoSummary, aiMessage } from '../../../server/models/aiModels'
 import { UserModel } from '../../../server/models/dbModels'
 
 const serverUrl = 'http://localhost:3000'
 const HASHED_USER_ID = '1111aaaabbbbb' // this needs to become dynamic
 
-export async function getYoutubeTranscript(url: string) {
+export async function getYoutubeTranscript(url: string): Promise<VideoSummary> {
   const test = await superagent
     .post(serverUrl + '/learning/v1/openAI/transcript')
     .send({ url })
   return test.body
 }
 
-export async function getStudySession(analysis: string): Promise<aiMessage> {
+export async function getStudySession(url: string): Promise<aiMessage> {
   const response = await superagent
     .post(serverUrl + '/learning/v1/openAI/study_session')
-    .send({ analysis })
+    .send({ url })
   return response.body
 }
 
