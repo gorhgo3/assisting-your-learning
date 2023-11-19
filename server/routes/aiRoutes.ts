@@ -1,6 +1,7 @@
 import express from 'express'
 import { checkVideo } from '../functions/transcript.js'
-import reviewTranscript, {
+import {
+  reviewTranscript,
   newStudySession,
   questionResponse,
 } from '../functions/aiFunctions.js'
