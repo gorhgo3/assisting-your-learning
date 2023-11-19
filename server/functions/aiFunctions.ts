@@ -1,26 +1,8 @@
 import { config } from 'dotenv'
 import OpenAI from 'openai'
+import { APIPromise } from 'openai/core.mjs'
 
 config()
-
-export async function reviewTranscript(data: any) {
-  const message = `
-  can you summarise the content of this transcript for a youtube video and bulletpoint the key points, and importantly explain if this is up to date to modern learning to code practises:
-  ${data}`
-  // return message
-  try {
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    })
-    const chatCompletion = await openai.chat.completions.create({
-      messages: [{ role: 'user', content: message }],
-      model: 'gpt-3.5-turbo',
-    })
-    return chatCompletion.choices[0].message.content
-  } catch (err) {
-    return err
-  }
-}
 
 // Generate a 3 hour study session
 export async function newStudySession(
@@ -67,4 +49,75 @@ export async function questionResponse(data: any) {
   }
 }
 
-export default reviewTranscript
+export async function reviewTranscript(data: any) {
+  try {
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+    const summary = aiSummariseTranscript(openai, data)
+    const technical = aiSummariseTechnical(openai, data)
+    const relevency = aiSummariseRelevent(openai, data)
+
+    // UPON RESOLVE RETURN THESE VALUES
+    const [summarySettled, technicalSettled, relevencySettled] =
+      await Promise.all([summary, technical, relevency])
+
+    const overview = {
+      summary: summarySettled.choices[0].message.content,
+      technical: technicalSettled.choices[0].message.content,
+      relevancy: relevencySettled.choices[0].message.content,
+    }
+
+    return overview
+  } catch (err) {
+    return err
+  }
+}
+
+export function aiSummariseTranscript(
+  openai: OpenAI,
+  data: any
+): APIPromise<OpenAI.Chat.Completions.ChatCompletion> {
+  const chatCompletion = openai.chat.completions.create({
+    messages: [
+      {
+        role: 'user',
+        content: `Please summarize this YouTube video transcript in 3 sentences: ${data}`,
+      },
+    ],
+    model: 'gpt-3.5-turbo',
+  })
+  return chatCompletion
+}
+
+export function aiSummariseTechnical(
+  openai: OpenAI,
+  data: any
+): APIPromise<OpenAI.Chat.Completions.ChatCompletion> {
+  const chatCompletion = openai.chat.completions.create({
+    messages: [
+      {
+        role: 'user',
+        content: `summarise this videos technical aspects: ${data}`,
+      },
+    ],
+    model: 'gpt-3.5-turbo',
+  })
+  return chatCompletion
+}
+
+export function aiSummariseRelevent(
+  openai: OpenAI,
+  data: any
+): APIPromise<OpenAI.Chat.Completions.ChatCompletion> {
+  const chatCompletion = openai.chat.completions.create({
+    messages: [
+      {
+        role: 'user',
+        content: `Is the content up to date with modern learning to code practices?: ${data}`,
+      },
+    ],
+    model: 'gpt-3.5-turbo',
+  })
+  return chatCompletion
+}
